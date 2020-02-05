@@ -1,10 +1,14 @@
 let express = require( 'express' );
 let bodyParser = require( 'body-parser' );
 let mongoose = require( 'mongoose' );
+let morgan = require ('morgan');
+let uuid = require('uuid');
 let jsonParser = bodyParser.json();
 let { DATABASE_URL, PORT } = require( './config' );
-
+let { moviesList} = require('./model');
 let app = express();
+
+app.use(morgan("dev"));
 
 app.use(function(req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
@@ -16,7 +20,51 @@ app.use(function(req, res, next) {
 	next();
 });
 
-/* Tu código va aquí */
+app.get("/api/moviesdex", (req,res)=>{
+	moviesList.getAll()
+	.then(moviesList=>{
+			return res.status(200).json(moviesList);
+		})
+		.catch(error=>{
+			console.log(error);
+			res.statusMessage="Hubo un error de conexión con la BD.";
+			return res.status(500).send();
+		});
+});
+
+app.post("/api/moviesdex", jsonParser, (req,res)=>{
+	let filmtitle = req.body.film_title;
+	let year = req.body.year;
+	let rating = req.body.rating;
+
+	if(filmtitle=="" || year=="" || rating=="")
+	{
+		res.statusMessage = "Completa todos los datos";
+		return res.status(406).json({
+			message : "Completa todos los datos",
+			status : 406
+		});
+	}
+
+	
+	let newMovie = {
+		film_ID :uuid(),
+		film_title : filmtitle,
+		year : year,
+		rating : rating,
+	};
+
+	moviesList.post(newMovie)
+	.then(moviesList=>{
+			return res.status(201).json(newMovie);
+	})
+	.catch(error=>{
+		console.log(error);
+		res.statusMessage="Hubo un error de conexión con la BD.";
+		return res.status(500).send();
+	});
+
+});
 
 let server;
 
