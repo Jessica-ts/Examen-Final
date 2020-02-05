@@ -9,31 +9,30 @@ function NewPelicula{
 	        let yearMovie = {
 	        	year : event.target.nuevo.value
 	        },
-	         let yearMovie = {
+	         let ratingMovie = {
 	        	year : event.target.nuevo.value
-	        }
-	        props.agregaMovie( NameMovie );
+	        };
+	        props.agregaMovie( NameMovie, yearMovie, ratingMovie);
 
 	}
 
 
     return (
         <form onSubmit={(event) => click(event)} id="movieForm">
-            <label htmlFor="nameMovie"> Nombre : </label>
-            <input name="name" type="text" id="nameMovie" />
-            <button type="submit">
-                Agregar
-            </button>
+            <p>
+	            <label htmlFor="nameMovie"> Nombre : </label>
+	            <input name="name" type="text" id="nameMovie" />
+            </p>
 
-            <label htmlFor="yearMovie"> Año : </label>
-            <input name="year" type="text" id="yearMovie" />
-            <button type="submit">
-                Agregar
-            </button>
-        </form>
+            <p>
+	            <label htmlFor="yearMovie"> Año : </label>
+	            <input name="year" type="text" id="yearMovie" />
+            </p>
 
-        <label htmlFor="ratingMovie"> Rating : </label>
-            <input name="year" type="text" id="ratingMovie" />
+            <p>
+        		<label htmlFor="ratingMovie"> Rating : </label>
+           		<input name="year" type="text" id="ratingMovie" />
+           	</p>
             <button type="submit">
                 Agregar
             </button>
