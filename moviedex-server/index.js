@@ -20,7 +20,7 @@ app.use(function(req, res, next) {
 	next();
 });
 
-app.get("/api/moviesdex", (req,res)=>{
+app.get("/api/moviedex", (req,res)=>{
 	moviesList.getAll()
 	.then(moviesList=>{
 			return res.status(200).json(moviesList);
@@ -32,7 +32,7 @@ app.get("/api/moviesdex", (req,res)=>{
 		});
 });
 
-app.post("/api/moviesdex", jsonParser, (req,res)=>{
+app.post("/api/moviedex", jsonParser, (req,res)=>{
 	let filmtitle = req.body.film_title;
 	let year = req.body.year;
 	let rating = req.body.rating;
