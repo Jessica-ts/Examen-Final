@@ -1,18 +1,18 @@
 import React from 'react';
 
-function NewPelicula{
+function NewPelicula(){
 	function click(event){
 	        event.preventDefault();
 	        let nameMovie = {
 	            nombre : event.target.nuevo.value 
-	        },
+	        };
 	        let yearMovie = {
 	        	year : event.target.nuevo.value
-	        },
+	        };
 	         let ratingMovie = {
 	        	year : event.target.nuevo.value
 	        };
-	        props.agregaMovie( NameMovie, yearMovie, ratingMovie);
+	    props.agregaMovie( nameMovie, yearMovie, ratingMovie);
 
 	}
 

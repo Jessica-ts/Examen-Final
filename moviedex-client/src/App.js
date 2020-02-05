@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Movies from './Movies';
+import NewPelicula from './AddMovie';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
 
 class App extends React.Component {
@@ -12,6 +13,8 @@ class App extends React.Component {
       apiURL : "http://localhost:8080"
     }
   }
+
+
 
   componentDidMount(){
     let url = `${this.state.apiURL}/api/moviedex`;
